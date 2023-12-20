@@ -1,13 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
 
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Home from './Components/Home';
 function App() {
   return (
-    <>
-    <div className=' bg-red-400'>
-      helllo developer
-    </div>
-    </>
+    <BrowserRouter>
+    <Routes>
+
+        <Route path='/' element={<Home/>} />
+
+    </Routes>
+    </BrowserRouter>
+   
   );
 }
 
