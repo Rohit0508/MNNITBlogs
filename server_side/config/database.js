@@ -10,7 +10,8 @@ exports.connect=()=>{
         console.log("DB connected successfully");
     })
     .catch((error)=>{
-        console("error in connecting DB" + error);
+        console.log("error in connecting DB");
+        console.log(error);
         process.exit(1);
     })
 }

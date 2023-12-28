@@ -1,7 +1,7 @@
 const Posts = require('../models/Posts');
 
 // Route to create a new post
-router.post('/create', async (req, res) => {
+exports.postController= async (req, res) => {
     try {
       const { body, userId } = req.body;
   
@@ -19,4 +19,4 @@ router.post('/create', async (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
-  });
+  };
