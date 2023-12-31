@@ -5,13 +5,16 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from './Components/Home';
+import Blogview from './Components/Blogview';
+import CreatePost from './Components/CreatePost';
+
 function App() {
   return (
     <BrowserRouter>
     <Routes>
 
-        <Route path='/' element={<Home/>} />
+        <Route path='/' element={<Blogview/>} />
+        <Route path='/write' element={<CreatePost/>} />
 
     </Routes>
     </BrowserRouter>
