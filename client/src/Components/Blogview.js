@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import banner from './images/bann.jpeg';
 import shareicon from './images/share.svg';
 import NavBar from './NavBar';
+import Footer from './Footer' ;
 
 const Blogview = () => {
   const [isliked, setisliked] = useState(false);
@@ -54,6 +55,10 @@ const Blogview = () => {
           </div>
         </div>
       </div>
+      <br/>
+      <br/>
+      <br/>
+      <Footer/>
     </>
   );
 };
