@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Blogview from "./Components/Blogview";
 import CreatePost from "./Components/CreatePost";
 import Login from "./Components/login";
+import Signup from './Components/SignUp'
 
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -41,6 +42,7 @@ function App() {
           path="/login"
           element={<Login onLogin={handleLogin} isLoggedIn={isLoggedIn} />}
         />
+        <Route path="/signup" element={<Signup/>} />
       </Routes>
     </BrowserRouter>
   );
