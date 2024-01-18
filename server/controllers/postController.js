@@ -2,9 +2,9 @@ const Post=require("../models/postModel");
 
 exports.createPost = async(req,res)=>{
     try{
-      const {title,body}=req.body;
+      const {title,body,user}=req.body;
       const post=new Post({
-        title,body
+        title,body,user
       })
       const savedPost=await post.save();
       res.json({

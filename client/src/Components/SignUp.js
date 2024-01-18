@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Assuming you are using React Router for navigation
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -7,6 +7,7 @@ const Signup = () => {
     lastName: '',
     email: '',
     password: '',
+    accountType: '',
     confirmPassword: '',
     otp: '',
   });
@@ -19,11 +20,33 @@ const Signup = () => {
     }));
   };
 
+  const handleSendOTP = async () => {
+    try {
+      const response = await fetch('http://localhost:4500/api/v1/auth/sendotp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: formData.email }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        console.log('OTP sent successfully:', data.message);
+      } else {
+        console.error('Failed to send OTP:', data.message);
+      }
+    } catch (error) {
+      console.error('Error sending OTP:', error.message);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/signup', {
+      const response = await fetch('http://localhost:4500/api/v1/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -52,6 +75,7 @@ const Signup = () => {
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h2 className="text-2xl font-semibold mb-4">Signup</h2>
         <form onSubmit={handleSubmit}>
+          {/* ... (existing form fields) */}
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
               First Name:
@@ -95,6 +119,24 @@ const Signup = () => {
               onChange={handleChange}
               placeholder=""
             />
+          </div>
+          <div>
+          <div className="mb-4">
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="accountType">
+    Choose accountType:
+  </label>
+  <select
+    id="accountType"
+    name="accountType"
+    className="w-full border rounded py-2 px-3"
+    value={formData.accountType}
+    onChange={handleChange}
+  >
+    <option value="Admin">Admin</option>
+    <option value="Student">Student</option>
+  </select>
+</div>
+
           </div>
 
           <div className="mb-4">
@@ -141,6 +183,14 @@ const Signup = () => {
               placeholder="Enter OTP"
             />
           </div>
+
+          <button
+            type="button"
+            onClick={handleSendOTP}
+            className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 mr-2"
+          >
+            Send OTP
+          </button>
 
           <button
             type="submit"
