@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FaWindows } from 'react-icons/fa';
+import { Link, useNavigate } from "react-router-dom";
+
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -12,6 +19,9 @@ const Signup = () => {
     otp: '',
   });
 
+  const redirectToHome = () => {
+    navigate('/'); // Use history.push to navigate to the home page
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -34,11 +44,14 @@ const Signup = () => {
 
       if (data.success) {
         console.log('OTP sent successfully:', data.message);
+        toast.success(data.message);
       } else {
         console.error('Failed to send OTP:', data.message);
+        toast.success(data.message);
       }
     } catch (error) {
       console.error('Error sending OTP:', error.message);
+      toast.error(error.message);
     }
   };
 
@@ -57,16 +70,21 @@ const Signup = () => {
       const data = await response.json();
 
       if (data.success) {
+        
         console.log('Signup successful:', data.message);
+        toast.success(data.message);
+        redirectToHome();
         // Redirect to the login page after successful signup
         // You should replace '/login' with the actual route for your login page
         // You can use React Router's useHistory hook for this purpose
         // Example: history.push('/login');
       } else {
         console.error('Signup failed:', data.message);
+        toast.error(data.message);
       }
     } catch (error) {
       console.error('Error during signup:', error.message);
+      toast.error(error.message);
     }
   };
 
