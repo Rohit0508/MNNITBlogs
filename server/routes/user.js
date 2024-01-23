@@ -10,7 +10,7 @@ const {
 //   changePassword,
 } = require("../controllers/auth");
 const { createPost } = require("../controllers/postController");
-
+const {getAllPosts} = require("../controllers/postController");
 const {createComment} =require("../controllers/commentConroller");
 const{likePost,unlikePost} =require("../controllers/likeController");
 const {
@@ -38,6 +38,7 @@ router.post("/reset-password", resetPassword)
 
 //Route for post/like/comment
 router.post("/post", createPost);
+router.get("/getpost", getAllPosts);
 router.post("/likes/like", likePost);
 router.post("/likes/unlike", unlikePost);
 router.post("/comment",createComment);

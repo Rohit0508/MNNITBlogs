@@ -7,7 +7,7 @@ import { FaLinkedin } from "react-icons/fa";
 
 function Footer() {
   return (
-    <footer className="bg-gray-800 text-white p-4">
+    <footer className="bg-gray-800 text-white p-4 ">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center flex-wrap md:flex-no-wrap" style={{ background: 'none' }}>
         {/* First Column: MNNIT Blogs Logo */}
         <div className="flex-shrink-0 mb-4 md:mb-0">

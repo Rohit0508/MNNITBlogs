@@ -6,13 +6,22 @@ const postSchema=mongoose.Schema({
       type:String,
       required:true
     },
-    body:{
+    content:{
         type:String,
         required:true
     },
+    category:{
+      type:String,
+      required:true
+  },
+  banner:{
+    type:String,
+    required:true
+},
     user:{
       type:mongoose.Schema.Types.ObjectId,
-      ref:"User"
+      ref:"User",
+      required:true
     },
      likes:[
         {
@@ -28,6 +37,11 @@ const postSchema=mongoose.Schema({
 
         }
      ],
+     
+},
+
+{
+    timestamps:true
 });
 
 module.exports=mongoose.model("Post",postSchema);

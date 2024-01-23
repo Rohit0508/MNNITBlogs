@@ -5,9 +5,11 @@ import Blogview from "./Components/Blogview";
 import CreatePost from "./Components/CreatePost";
 import Login from "./Components/login";
 import Signup from './Components/SignUp'
-
+import Blogs from "./Components/Blogs";
+import ReadBlog from "./Components/ReadBlog";
+import Home from "./Home";
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(true);
 
   const handleLogin = () => {
     // Your login logic here
@@ -33,10 +35,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Blogview />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/blogs" element={<Blogs />} />
+        <Route path="/readit" element={<ReadBlog />} />
         <Route
-          path="/write"
-          element={<PrivateRoute path="/write" element={<CreatePost />} />}
+          path="/write" element={<CreatePost />} 
         />
         <Route
           path="/login"

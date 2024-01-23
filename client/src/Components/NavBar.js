@@ -22,7 +22,7 @@ function NavBar({ isLoggedIn, onLogout }) {
 
   return (
     <nav className="bg-white text-gray-800 fixed top-0 w-full shadow-md">
-      <div className="container mx-auto py-2 sm:py-2 md:py-4 lg:py-6 xl:py-8 flex flex-col sm:flex-row items-center justify-between" style={{ background: 'none' }}>
+      <div className="mx-auto py-2 sm:py-2 md:py-4 lg:py-6 xl:py-8 flex flex-col sm:flex-row items-center justify-between" style={{ background: 'none' }}>
         <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-serif mb-2 sm:mb-0">
           <span className="font-bold">MNNIT</span><span className="font-thin">Blogs</span>
         </p>

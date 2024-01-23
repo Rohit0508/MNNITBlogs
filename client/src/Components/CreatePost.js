@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import JoditEditor from 'jodit-react';
 import banner from './images/bann.jpeg'
-
+import NavBar from './NavBar';
+import Footer from './Footer';
 export default function CreatePost() {
 
     const [post, setPost] = useState({
@@ -10,6 +11,26 @@ export default function CreatePost() {
         category: '',
         banner: ''
     });
+// this value needed to be updated ..
+    let user = "65a7f77a7d4e46344706f93d"
+   
+    const createPost = async()=>{
+        const {title,banner,category,content} = post;
+        console.log(title,banner);
+        let data = await fetch('http://localhost:4500/api/v1/auth/post',{
+            method: "POST",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                title, category, banner,content,user
+            })
+        })
+        let result = data.json();
+        console.log("get post called2")
+        console.log(result)
+    }
+
     const editor = useRef(null);
     //field changed function
     const fieldChanged = (event) => {
@@ -43,11 +64,13 @@ export default function CreatePost() {
     // handle the submit request...
     function handleSubmit() {
         console.log(post)
+        createPost();
     }
 
     return (
         <>
-            <div className='border-4 md:mx-24 bg-slate-100 space-y-4 hover:shadow-xl'>
+        <NavBar/>
+            <div className='mt-32 border-4 md:mx-24 bg-slate-100 space-y-4 hover:shadow-xl'>
                 <form onSubmit={handleSubmit}>
                     <textarea className='w-full text-xl resize rounded-lg' placeholder=' title ... ' name='title'
                         onChange={fieldChanged}></textarea>
@@ -80,6 +103,7 @@ export default function CreatePost() {
 
 
             </div>
+            <Footer/>
         </>
     )
 }
